@@ -1,7 +1,7 @@
-use ZadanieRealitnaKancelaria
+create ZadanieRealitnaKancelaria
 go
 
---V*TVORENIE TABUĽOK
+--VYTVORENIE TABUĽOK
 create table byt
 (
     id_bytu                     int                     IDENTITY,
@@ -18,7 +18,7 @@ create table byt
 create table dom
 (
 	id_domu				        int IDENTITY			,
-	Predaj_Kúpa			        bit						NOT NULL,
+	Predaj_Kúpa			        bit						NOT NULL, --0 predaj || 1 kúpa
 	Metre4				        int   					NOT NULL,
 	Izby				        int 					NOT NULL,
 	Poschodia			        int  					NOT NULL,
@@ -128,7 +128,7 @@ INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'2542', '(Hrab
 INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (0,'4317', '(Vyšná śebastová)Prešov',19900)
 INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'3736', '(Sekčov)Prešov',272728)
 INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (0,'5528', '(Mirkovce)Prešov',60000)
-INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'5528', '(Mirkovce)Prešov',60000)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'6513', '(Mirkovce)Prešov',100000)
 INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (0,'934', '(Kokošovce)Prešov',63000)
 INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'1360', '(Široke)Prešov',58480)
 INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'637', '(Okužná)Prešov',32000)
@@ -184,6 +184,9 @@ go
 
 SELECT*FROM obhliadka
 go
+
+SELECT*FROM Predaj_Kúpa
+go
 -------------------------------------------------------------------------------------------
 
 ---------------------MAZANIE VYPLNENÝCH ÚDAJOV (debug možnosť)-----------------------------
@@ -192,7 +195,20 @@ DELETE byt
 DELETE obhliadka 
 DELETE byt 
 DELETE dom 
+
 -------------------------------------------------------------------------------------------
+
+----------------------SELECT S ORDER BY-------------------------------
+
+--zoradenie bytov,ktoré sú na predaj podla počtu izieb
+SELECT izby,Metre4,cena,Lokalita from byt WHERE ABS(kupa_predaj)=1 ORDER BY (izby) ASC
+
+--zoradenie domy,ktoré sú na kúpu podla  ceny ktorú si určil stanovil klient
+SELECT izby,Metre4,cena,Lokalia from dom WHERE ABS(Predaj_Kúpa)=0 ORDER BY (Cena) ASC
+
+--zoradenie pozemku ktorý je v mirkovciach podľa m4
+SELECT Lokalita, Cena, Metre4 FROM pozemok WHERE (Lokalita)='(Mirkovce)Prešov' ORDER by (Metre4)asc
+----------------------------------------------------------------------
 
 
 
