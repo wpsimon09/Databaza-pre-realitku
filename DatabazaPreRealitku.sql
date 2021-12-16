@@ -1,7 +1,6 @@
 use ZadanieRealitnaKancelaria
 go
 
-
 create table byt
 (
     id_bytu                     int                     IDENTITY,
