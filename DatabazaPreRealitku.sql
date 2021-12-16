@@ -12,7 +12,6 @@ create table byt
     --obmedzenia--
     CONSTRAINT pk_domu  PRIMARY KEY (id_bytu),
     CONSTRAINT ch1_cena CHECK (Cena>1)
-
 )
 
 create table dom
@@ -27,7 +26,6 @@ create table dom
     --obmedzenia--  
     CONSTRAINT pk_dom PRIMARY KEY (id_domu),
     CONSTRAINT ch2_cena CHECK (Cena>1)
-
 )
 
 create table pozemok
@@ -79,3 +77,23 @@ create table Predaj_Kúpa
     CONSTRAINT fk2_pozemku FOREIGN key (id_pozemku) REFERENCES pozemok(id_pozemku),
     CONSTRAINT fk1_obhliadky FOREIGN KEY (id_prehliadky) REFERENCES obhliadka (id_prehliadky)
 )
+
+--INSERTY DO TABULKY POZEMOK--
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (0,'1736', '(Klenov)Prešov',26000)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'526', '(Solivar)Prešov',17000)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'2542', '(Hrabkov)Prešov',49000)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (0,'4317', '(Vyšná śebastová)Prešov',19900)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'3736', '(Sekčov)Prešov',272728)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (0,'5528', '(Mirkovce)Prešov',60000)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'5528', '(Mirkovce)Prešov',60000)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (0,'934', '(Kokošovce)Prešov',63000)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'1360', '(Široke)Prešov',58480)
+INSERT into pozemok (Predaj_Kúpa,Metre4,Lokalita,Cena) VALUES (1,'637', '(Okužná)Prešov',32000)
+go
+
+SELECT*FROM pozemok
+go
+
+
+
+
