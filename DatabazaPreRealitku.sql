@@ -210,7 +210,34 @@ SELECT izby,Metre4,cena,Lokalia from dom WHERE ABS(Predaj_Kúpa)=0 ORDER BY (Cen
 SELECT Lokalita, Cena, Metre4 FROM pozemok WHERE (Lokalita)='(Mirkovce)Prešov' ORDER by (Metre4)asc
 ----------------------------------------------------------------------
 
+---------------------SELECT S GROUP BY----------------------------------
 
+--spočíta všetky byty, ktoré sú na predaj a vypíše ich počet a priemernú sumu
+SELECT 
+count(id_bytu)   as PocetBytovNaPredaj,
+avg(cena) as PriemernaSuma
+from byt
+where kupa_predaj =0
+group by kupa_predaj
+
+--zrátanie všetkych ponúkanýc 1 poschodových domov a priemerny pocet izieb, metrov4
+SELECT
+count(id_domu) as PocetDostupnýchDomov,
+AVG(Izby) as PriemernyPocetIzieb,
+AVG(Metre4) as PriemernyPocetMetrov4
+FROM dom
+WHERE Poschodia =1
+GROUP BY Poschodia
+
+--všetky pozemky ktoré majú väčšie 4 metre ako 1000 + ich priemerna suma a sú napredaj
+SELECT
+COUNT(id_pozemku) as PocetPozemkov,
+AVG(Cena) as PriemernaCena
+FROM pozemok 
+WHERE Metre4 > 1000 AND Predaj_Kúpa = 0
+Group BY Predaj_Kúpa
+
+----------------------------------------------------------------------
 
 
 
