@@ -21,11 +21,11 @@ create table byt
 create table dom
 (
 	id_domu				        int IDENTITY			,
-	Predaj_Kúpa			        bit						NOT NULL, --0 predaj || 1 kúpa
+	Predaj_Kúpa			        bit					NOT NULL, --0 predaj || 1 kúpa
 	Metre4				        int   					NOT NULL,
 	Izby				        int 					NOT NULL,
 	Poschodia			        int  					NOT NULL,
-	Lokalia				        VARCHAR(300)			NOT NULL,
+	Lokalia				        VARCHAR(300)				NOT NULL,
 	Cena				        int 					NOT NULL,
     --obmedzenia--  
     CONSTRAINT pk_dom PRIMARY KEY (id_domu),
@@ -36,11 +36,11 @@ create table dom
 
 create table pozemok
 (
-	id_pozemku			        int IDENTITY			,
-	Predaj_Kúpa 		        bit 					NOT NULL,
+	id_pozemku			        int IDENTITY				,
+	Predaj_Kúpa 		        	bit 					NOT NULL,
 	Metre4				        int 					NOT NULL,
-	Lokalita			        VARCHAR	(300)			NOT NULL,
-    Cena                        money                   not null,
+	Lokalita			        VARCHAR	(300)				NOT NULL,
+   	Cena                        		money                   		not null,
     --obmedzenia--
     CONSTRAINT pk_pozemku PRIMARY KEY (id_pozemku),
     CONSTRAINT ch3_cena CHECK (Cena>1)
@@ -71,15 +71,15 @@ alter table obhliadka alter column id_domu int null
 
 create table Predaj_Kúpa
 (
-	id_predaja_kúpi				int IDENTITY			,
-	id_domu						int 					NOT NULL,
-	id_bytu						int 					NOT NULL,
-	id_pozemku					int 					NOT NULL,
-    id_prehliadky               int                     NOT NULL,
-	Meno_predávajúceho			VARCHAR(100)			NOT NULL,
-	Priezvisko_predávajúceho	VARCHAR(100)			NOT NULL,
-	Meno_kupujúceho				VARCHAR(100)			NOT NULL,
-	Priezvisko_kupujúceho		VARCHAR(100)			NOT NULL,
+	id_predaja_kúpi					int IDENTITY			,
+	id_domu						int 				NOT NULL,
+	id_bytu						int 				NOT NULL,
+	id_pozemku					int 				NOT NULL,
+    	id_prehliadky               			int                     	NOT NULL,
+	Meno_predávajúceho				VARCHAR(100)			NOT NULL,
+	Priezvisko_predávajúceho			VARCHAR(100)			NOT NULL,
+	Meno_kupujúceho					VARCHAR(100)			NOT NULL,
+	Priezvisko_kupujúceho				VARCHAR(100)			NOT NULL,
     --obmedzenia
     CONSTRAINT pk_predaja_kupy PRIMARY KEY (id_predaja_kúpi) ,
     CONSTRAINT fk2_bytu FOREIGN KEY (id_bytu) REFERENCES byt(id_bytu),
