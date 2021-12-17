@@ -7,12 +7,12 @@ go
 --VYTVORENIE TABUĽOK
 create table byt
 (
-    id_bytu                     int                     IDENTITY,
-    Metre4                      int                     not null,
-    izby                        int                         null,
-    cena                        money                   not null,
-    kupa_predaj                 BIT                     not null, --0 predaj || 1 kúpa
-    Lokalita                    varchar(300)            not null,
+    id_bytu                     		int                     		IDENTITY,
+    Metre4                     			int                     		not null,
+    izby                        		int                       		null,
+    cena                       			money                   		not null,
+    kupa_predaj                 		BIT                     		not null, --0 predaj || 1 kúpa
+    Lokalita                    		varchar(300)            		not null,
     --obmedzenia--
     CONSTRAINT pk_domu  PRIMARY KEY (id_bytu),
     CONSTRAINT ch1_cena CHECK (Cena>1)
@@ -49,21 +49,23 @@ create table pozemok
 
 create table obhliadka
 (
-    id_prehliadky               INT                     IDENTITY,
-    id_bytu                     int                     not null,
-    id_domu                     INT                     not null,
-    id_pozemku                  int                     not null,
-    číslo_maklera               INT                     not null,
-    ČasObhliadky                TIME                    not null,
-    DátumObhliadky              DATE                    not null,
-    KrstneMenoObhliadajuceho    VARCHAR(40)             not null,
-    PreizvyskoObhliadajuce      VARCHAR(100)            not null,
+    id_prehliadky               		INT                     		IDENTITY,
+    id_bytu                     		int                     		not null,
+    id_domu                     		INT                     		not null,
+    id_pozemku                  		int                     		not null,
+    číslo_maklera              			INT                     		not null,
+    ČasObhliadky                		TIME                    		not null,
+    DátumObhliadky             			DATE                    		not null,
+    KrstneMenoObhliadajuceho    		VARCHAR(40)             		not null,
+    PreizvyskoObhliadajuce      		VARCHAR(100)            		not null,
+    
     --obmedzenia--
     CONSTRAINT pk_obhliadky PRIMARY KEY (id_prehliadky ),
     CONSTRAINT fk_bytu FOREIGN KEY (id_bytu) REFERENCES byt(id_bytu),
     CONSTRAINT fk_domu FOREIGN KEY (id_domu) REFERENCES dom (id_domu),
     CONSTRAINT fk_pozemku FOREIGN key (id_pozemku) REFERENCES pozemok(id_pozemku)
 )
+
 --upravenie tabulky aby id_bytu, id_domu a id_pozemku mohli byť null
 alter table obhliadka alter column id_bytu int null
 alter table obhliadka alter column id_pozemku int null
@@ -71,15 +73,16 @@ alter table obhliadka alter column id_domu int null
 
 create table Predaj_Kúpa
 (
-	id_predaja_kúpi					int IDENTITY			,
-	id_domu						int 				NOT NULL,
-	id_bytu						int 				NOT NULL,
-	id_pozemku					int 				NOT NULL,
-    	id_prehliadky               			int                     	NOT NULL,
-	Meno_predávajúceho				VARCHAR(100)			NOT NULL,
-	Priezvisko_predávajúceho			VARCHAR(100)			NOT NULL,
-	Meno_kupujúceho					VARCHAR(100)			NOT NULL,
-	Priezvisko_kupujúceho				VARCHAR(100)			NOT NULL,
+	id_predaja_kúpi				int 					IDENTITY,
+	id_domu					int 					NOT NULL,
+	id_bytu					int 					NOT NULL,
+	id_pozemku				int 					NOT NULL,
+    	id_prehliadky               		int                     		NOT NULL,
+	Meno_predávajúceho			VARCHAR(100)				NOT NULL,
+	Priezvisko_predávajúceho		VARCHAR(100)				NOT NULL,
+	Meno_kupujúceho				VARCHAR(100)				NOT NULL,
+	Priezvisko_kupujúceho			VARCHAR(100)				NOT NULL,
+	
     --obmedzenia
     CONSTRAINT pk_predaja_kupy PRIMARY KEY (id_predaja_kúpi) ,
     CONSTRAINT fk2_bytu FOREIGN KEY (id_bytu) REFERENCES byt(id_bytu),
