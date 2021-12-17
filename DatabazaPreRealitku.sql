@@ -1,6 +1,9 @@
 create ZadanieRealitnaKancelaria
 go
 
+--AUTORI : Šimon Potočňák a Kristián Samuel Sabol
+-- All rights reserved © 
+
 --VYTVORENIE TABUĽOK
 create table byt
 (
@@ -238,11 +241,3 @@ WHERE Metre4 > 1000 AND Predaj_Kúpa = 0
 Group BY Predaj_Kúpa
 
 ----------------------------------------------------------------------
-
-
-
-
-
-
-
-
